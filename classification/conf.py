@@ -16,7 +16,6 @@ from datetime import datetime
 from iopath.common.file_io import g_pathmgr
 from yacs.config import CfgNode as CfgNode
 
-
 # Global config object (example usage: from core.config import cfg)
 _C = CfgNode()
 cfg = _C
@@ -185,55 +184,9 @@ _C.ADACONTRAST.CE_SUP_TYPE = "weak_strong" # ["weak_all", "weak_weak", "weak_str
 _C.ADACONTRAST.REFINE_METHOD = "nearest_neighbors"
 _C.ADACONTRAST.NUM_NEIGHBORS = 10
 
-# --------------------------------- LAME options ----------------------------- #
-_C.LAME = CfgNode()
-
-_C.LAME.AFFINITY = "rbf"
-_C.LAME.KNN = 5
-_C.LAME.SIGMA = 1.0
-_C.LAME.FORCE_SYMMETRY = False
-
 # --------------------------------- LAW options ----------------------------- #
 _C.LAW = CfgNode()
 _C.LAW.TAU = 1.0
-
-# --------------------------------- EATA options ---------------------------- #
-_C.EATA = CfgNode()
-
-# Fisher alpha
-_C.EATA.FISHER_ALPHA = 2000
-
-# Number of samples for ewc regularization
-_C.EATA.NUM_SAMPLES = 2000
-
-# Diversity margin
-_C.EATA.D_MARGIN = 0.05
-
-# --------------------------------- SAR options ---------------------------- #
-_C.SAR = CfgNode()
-
-# Threshold e_m for model recovery scheme
-_C.SAR.RESET_CONSTANT_EM = 0.2
-
-# --------------------------------- ROTTA options ---------------------------- #
-_C.ROTTA = CfgNode()
-
-_C.ROTTA.MEMORY_SIZE = 64
-_C.ROTTA.UPDATE_FREQUENCY = 64
-_C.ROTTA.NU = 0.001
-_C.ROTTA.ALPHA = 0.05
-_C.ROTTA.LAMBDA_T = 1.0
-_C.ROTTA.LAMBDA_U = 1.0
-
-# --------------------------------- ROID options ---------------------------- #
-_C.ROID = CfgNode()
-
-_C.ROID.USE_WEIGHTING = True
-_C.ROID.USE_PRIOR_CORRECTION = True
-_C.ROID.USE_CONSISTENCY = True
-_C.ROID.MOMENTUM_SRC = 0.99     # Momentum for weight ensembling
-_C.ROID.MOMENTUM_PROBS = 0.9    # Momentum for diversity weighting
-_C.ROID.TEMPERATURE = 1/3
 
 # ------------------------------- Source options ---------------------------- #
 _C.SOURCE = CfgNode()
@@ -402,20 +355,11 @@ def get_domain_sequence(ckpt_path):
 def adaptation_method_lookup(adaptation):
     lookup_table = {"source": "Norm",
                     "norm_test": "Norm",
-                    "norm_alpha": "Norm",
-                    "norm_ema": "Norm",
-                    "ttaug": "TTAug",
-                    "memo": "MEMO",
-                    "lame": "LAME",
                     "tent": "Tent",
-                    "eata": "EATA",
-                    "sar": "SAR",
                     "adacontrast": "AdaContrast",
                     "cotta": "CoTTA",
-                    "rotta": "RoTTA",
                     "gtta": "GTTA",
                     "rmt": "RMT",
-                    "roid": "ROID",
                     "law": "LAW",
                     }
     assert adaptation in lookup_table.keys(), \

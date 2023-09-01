@@ -1,24 +1,16 @@
 import os
 import logging
 import numpy as np
-
 from models.model import get_model
 from utils import get_accuracy, eval_domain_dict
 from datasets.data_loading import get_test_loader
 from conf import cfg, load_cfg_from_args, get_num_classes, get_domain_sequence, adaptation_method_lookup
 from methods.tent import Tent
-from methods.ttaug import TTAug
-from methods.memo import MEMO
 from methods.cotta import CoTTA
 from methods.gtta import GTTA
 from methods.adacontrast import AdaContrast
 from methods.rmt import RMT
-from methods.eata import EATA
 from methods.norm import Norm
-from methods.lame import LAME
-from methods.sar import SAR
-from methods.rotta import RoTTA
-from methods.roid import ROID
 from methods.law import LAW
 
 logger = logging.getLogger(__name__)

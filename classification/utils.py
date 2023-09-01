@@ -5,7 +5,6 @@ from datasets.imagenet_subsets import IMAGENET_D_MAPPING
 
 logger = logging.getLogger(__name__)
 
-
 def split_results_by_domain(domain_dict, data, predictions):
     """
     Separate the labels and predictions by domain
